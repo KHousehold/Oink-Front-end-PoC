@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@material-ui/icons": "^4.2.0",
+    "@material-ui/styles": "^4.1.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^1.0.0",
     "eslint": "^5.16.0",
