@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -9,6 +9,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import AboutIcon from '@material-ui/icons/Info';
 import CategoryIcon from '@material-ui/icons/ViewList';
 import CashIcon from '@material-ui/icons/AttachMoney';
+import HomeIcon from '@material-ui/icons/Home';
 import { ListItem, Divider, ListItemIcon, ListItemText } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -18,6 +19,10 @@ const useStyles = makeStyles({
     },
     drawerPaper: {
         width: 240,
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'inherit'
     }
 });
 
@@ -27,30 +32,36 @@ export default function Navigation(props) {
     function getNavList() {
         return (
             <List>
-                <Route render={({ history }) => (
-                    <ListItem button onClick={() => { history.push(`/expenses`) }}>
-                        <ListItemIcon><CashIcon /></ListItemIcon>
+                <ListItem button>
+                    <ListItemIcon><HomeIcon /></ListItemIcon>
+                    <Link to="/" className={classes.link}>
+                        <ListItemText primary={'Home'} />
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><CashIcon /></ListItemIcon>
+                    <Link to="/expenses" className={classes.link}>
                         <ListItemText primary={'Expenses'} />
-                    </ListItem>
-                )} />
-                <Route render={({ history }) => (
-                    <ListItem button onClick={() => { history.push(`/categories`) }}>
-                        <ListItemIcon><CategoryIcon /></ListItemIcon>
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><CategoryIcon /></ListItemIcon>
+                    <Link to="/categories" className={classes.link}>
                         <ListItemText primary={'Categories'} />
-                    </ListItem>
-                )} />
-                <Route render={({ history }) => (
-                    <ListItem button onClick={() => { history.push(`/dashboard`) }}>
-                        <ListItemIcon><DashboardIcon /></ListItemIcon>
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><DashboardIcon /></ListItemIcon>
+                    <Link to="/dashboard" className={classes.link}>
                         <ListItemText primary={'Dashboard'} />
-                    </ListItem>
-                )} />
-                <Route render={({ history }) => (
-                    <ListItem button onClick={() => { history.push(`/about`) }}>
-                        <ListItemIcon><AboutIcon /></ListItemIcon>
+                    </Link>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><AboutIcon /></ListItemIcon>
+                    <Link to="/about" className={classes.link}>
                         <ListItemText primary={'About'} />
-                    </ListItem>
-                )} />
+                    </Link>
+                </ListItem>
             </List>
         )
     }
@@ -68,17 +79,6 @@ export default function Navigation(props) {
             <Divider />
             <List>
                 {getNavList()}
-                {/* {['Expenses', 'Categories', 'Dashboard', 'About'].map((text, index) => {
-                    let iconName = `${text}Icon`;
-                    return (
-                        <Route key={index} render={({ history }) => (
-                            <ListItem button key={text} onClick={() => { history.push(`/${text.toLowerCase()}`) }}>
-                                <ListItemText primary={text} />
-                                <ListItemIcon></ListItemIcon>
-                            </ListItem>
-                        )} />
-                    )
-                })} */}
             </List>
         </Drawer>
     )
