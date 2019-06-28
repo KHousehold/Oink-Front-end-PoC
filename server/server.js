@@ -1,10 +1,11 @@
+/*global require*/
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const app = express();
-const UserModel = require('./model/UserModel');
+// const UserModel = require('./model/UserModel');
 
 const port = 4000;
 
@@ -26,7 +27,7 @@ app.use('/', routes);
 app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
 
 //Handle errors
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     res.status(err.status || 500);
     res.json({ error: err });
 });

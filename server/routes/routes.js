@@ -6,7 +6,7 @@ const router = express.Router();
 
 //When the user sends a post request to this route, passport authenticates the user based on the
 //middleware created previously
-router.post('/register', passport.authenticate('register', { session: false }), async (req, res, next) => {
+router.post('/register', passport.authenticate('register', { session: false }), async (req, res) => {
     res.json({
         message: 'Signup successful',
         user: req.user
@@ -14,14 +14,14 @@ router.post('/register', passport.authenticate('register', { session: false }), 
 });
 
 router.post('/login', async (req, res, next) => {
-    passport.authenticate('login', async (err, user, info) => {
+    passport.authenticate('login', async (err, user) => {
         try {
             if (err || !user) {
-                const error = new Error('An Error occured')
+                const error = new Error('An Error occured');
                 return next(error);
             }
             req.login(user, { session: false }, async (error) => {
-                if (error) return next(error)
+                if (error) return next(error);
                 //We don't want to store the sensitive information such as the
                 //user password in the token so we pick only the email and id
                 const body = { _id: user._id, email: user.email };
