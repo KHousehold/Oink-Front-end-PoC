@@ -12,7 +12,7 @@ import Navigation from './Navigation';
 
 const navWidth = 240;
 const useStyles = makeStyles({
-    root: {
+    headerContainer: {
         display: 'flex',
         flexGrow: 1
     },
@@ -76,7 +76,7 @@ export default function Header() {
     }
 
     return (
-        <div className={classes.root}>
+        <div className={classes.headerContainer}>
             <AppBar position="static">
                 <Toolbar className={classes.toolBar}>
                     <IconButton edge="start" className={classes.menuButton}

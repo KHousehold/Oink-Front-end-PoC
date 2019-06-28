@@ -49,6 +49,7 @@
     "eslint": "^5.16.0",
     "nodemon": "^1.19.1",
     "style-loader": "^0.23.0",
+    "url-loader": "^2.0.1",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.6.0"

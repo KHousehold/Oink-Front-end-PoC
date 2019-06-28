@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from 'react-router-dom'
 import { hot } from "react-hot-loader";
+import { makeStyles } from '@material-ui/styles';
 import Header from './components/Header';
 import Home from './components/Home';
 import Expenses from './components/Expenses';
