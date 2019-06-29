@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Expenses from './components/Expenses';
 import LoginForm from "./components/authComponents/LoginForm";
+import { checkToken } from './repositories/AuthRepository';
 import "./css/App.css";
 
 class App extends Component {
@@ -17,7 +18,9 @@ class App extends Component {
 		}
 	}
 	componentDidMount() {
-
+		if (checkToken()) {
+			this.setState({ auth: true });
+		}
 		window.addEventListener('updateToken', this.handleTokenChange);
 	}
 	componentWillUnmount() {

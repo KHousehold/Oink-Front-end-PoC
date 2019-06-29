@@ -31,7 +31,6 @@ export default class LoginForm extends React.Component {
         login(this.state)
             .then((userToken) => {
                 if (userToken.token.length > 0) {
-                    debugger;
                     const event = new CustomEvent('updateToken', { bubbles: true });
                     window.dispatchEvent(event);
                     this.props.history.push('/');

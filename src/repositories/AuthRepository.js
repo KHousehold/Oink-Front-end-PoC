@@ -1,3 +1,4 @@
+/* global Promise fetch localStorage */
 const LOGIN_URL = 'http://localhost:4000/login';
 
 export const login = ({ email, password }) => {
@@ -19,4 +20,8 @@ export const login = ({ email, password }) => {
             })
             .catch(error => reject(error));
     });
+};
+
+export const checkToken = () => {
+    return localStorage.getItem('userToken');
 };
