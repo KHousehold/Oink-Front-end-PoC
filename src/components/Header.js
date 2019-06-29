@@ -46,11 +46,11 @@ export default function Header() {
     const [open, setOpen] = useState();
     const [authorized, setAuth] = useState(false);
 
-    function handleOpenNav() {
+    const handleOpenNav = () => {
         setOpen(true);
     }
 
-    function handleCloseNav() {
+    const handleCloseNav = () => {
         setOpen(false);
     }
 
