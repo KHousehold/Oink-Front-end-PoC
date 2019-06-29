@@ -14,9 +14,10 @@ export default class LoginForm extends React.Component {
         this.props = props;
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loginError: false
         }
-
+        this.showEror = this.showEror.bind(this);
     }
 
     handleEmailChange(event) {
@@ -35,10 +36,21 @@ export default class LoginForm extends React.Component {
                     window.dispatchEvent(event);
                     this.props.history.push('/');
                 }
-            });
+            })
+            .catch(error => this.setState({ loginError: true }));
     }
 
+    showEror() {
+        if (this.state.loginError) {
+            return (
+                <Typography>Your email or password is not correct!</Typography>
+            )
+        }
+    }
+
+
     render() {
+        const error = this.showEror();
         return (
             <div className='login-container'>
                 <Container className='login-form'>
@@ -46,6 +58,7 @@ export default class LoginForm extends React.Component {
                     <FormControl fullWidth>
                         <InputLabel htmlFor="email" className="input-label">Email</InputLabel>
                         <Input className="input-text" required={true} id="email"
+                            error={this.state.loginError}
                             value={this.state.email}
                             onChange={(e) => this.handleEmailChange(e)}
                             classes={{
@@ -56,6 +69,7 @@ export default class LoginForm extends React.Component {
                     <FormControl fullWidth>
                         <InputLabel htmlFor="password" className="input-label">Password</InputLabel>
                         <Input className="input-text" required={true} id="password"
+                            error={this.state.loginError}
                             type="password"
                             value={this.state.password}
                             onChange={(e) => this.handlePasswordChange(e)}
@@ -65,6 +79,7 @@ export default class LoginForm extends React.Component {
                             }}
                         />
                     </FormControl>
+                    {error}
                     <Button variant="outlined" size="large" className="login-button" onClick={() => this.handleLogin()}>Login</Button>
                 </Container>
             </div>
