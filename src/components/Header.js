@@ -41,10 +41,11 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Header() {
+export default function Header(props) {
     const classes = useStyles();
     const [open, setOpen] = useState();
-    const [authorized, setAuth] = useState(false);
+    // const [authorized, setAuth] = useState(false);
+
 
     const handleOpenNav = () => {
         setOpen(true);
@@ -55,7 +56,7 @@ export default function Header() {
     }
 
     function getButtons() {
-        if (!authorized) {
+        if (!props.auth) {
             return (
                 <div className={classes.buttonContainer}>
                     <Button color="inherit">

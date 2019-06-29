@@ -17,7 +17,7 @@ app.use(cors());
 
 require('./auth/auth');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const routes = require('./routes/routes');
 const secureRoute = require('./routes/secure-routes');
