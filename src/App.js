@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Expenses from './components/Expenses';
 import LoginForm from "./components/authComponents/LoginForm";
+import RegistrationForm from './components/authComponents/RegistrationForm';
 import { checkToken } from './repositories/AuthRepository';
 import "./css/App.css";
 
@@ -40,6 +41,7 @@ class App extends Component {
 				<Route path="/" exact component={Home} />
 				<Route path="/expenses" component={Expenses} />
 				<Route path="/login" component={LoginForm} />
+				<Route path="/register" component={RegistrationForm} />
 			</div>
 		);
 	}

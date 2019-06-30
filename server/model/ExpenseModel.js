@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ExpenseSchema = new Schema({
-    _id: Schema.Types.ObjectId,
     expenseName: {
         type: String,
         required: true

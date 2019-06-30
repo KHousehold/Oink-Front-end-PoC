@@ -1,20 +1,18 @@
-.login-container{
+.register-container{
     width: 100%;
     height: 100%;
     position: absolute;
     /* background-color: #fa9a91; */
 }
-.login-form,
-.login-form.MuiContainer-maxWidthLg{
+.register-form,
+.register-form.MuiContainer-maxWidthLg{
     background-color: #056571;
     max-width: 705px;
     top: 115px;
     position: relative;
 }
-.login-header{
-    color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.register-header{
+    color: white
 }
 .input-label,
 .input-label.MuiFormLabel-root,
@@ -32,17 +30,20 @@
     color: white;
     border-bottom: 0.5px solid white
 }
-.login-button,
-.login-button.MuiButtonBase-root{
+.icon{
+    color: white
+}
+.reg-button,
+.reg-button.MuiButtonBase-root{
     position: relative;
     margin-top: 15px;
     margin-bottom: 15px;
-    left: 546px;
+    left: 520px;
     background-color: #414141;
     color: white
 }
-.login-button:hover,
-.login-button.MuiButtonBase-root:hover{
+.reg-button:hover,
+.reg-button.MuiButtonBase-root:hover{
     background-color: #222020;
 }
 .error-message{

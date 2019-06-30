@@ -43,10 +43,10 @@ export default class LoginForm extends React.Component {
     showEror() {
         if (this.state.loginError) {
             return (
-                <Typography>Your email or password is not correct!</Typography>
+                <Typography className='error-message'>Your email or password is not correct!</Typography>
             )
         }
-    }
+    };
 
 
     render() {
