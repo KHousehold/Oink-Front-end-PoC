@@ -11,7 +11,7 @@ import VisibilityOn from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import '../../css/RegistrationForm.css';
 import { Button } from '@material-ui/core';
-import { register } from '../../repositories/AuthRepository';
+import { register, login } from '../../repositories/AuthRepository';
 
 export default class RegistrationForm extends Component {
     constructor() {
@@ -51,9 +51,16 @@ export default class RegistrationForm extends Component {
 
     handleRegButtonClick() {
         debugger;
-        register(this.state.email, this.state.password)
-            .then((user) => {
-                if (user) this.showDialog();
+        register({ email: this.state.email, password: this.state.password })
+            .then((response) => {
+                if (response && response.user) {
+                    login({ email: response.user.email, password: this.state.password })
+                        .then((userToken) => {
+                            const event = new CustomEvent('updateToken', { bubbles: true });
+                            window.dispatchEvent(event);
+                            this.props.history.push('/');
+                        });
+                }
             })
             .catch(error => this.setState({ regError: true }))
     }

@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -19,49 +19,50 @@ const useStyles = makeStyles({
     },
     drawerPaper: {
         width: 240,
-    },
-    link: {
-        textDecoration: 'none',
-        color: 'inherit'
     }
 });
 
-export default function Navigation(props) {
+const Navigation = (props) => {
     const classes = useStyles();
 
-    function getNavList() {
+    const handleNavClick = (event) => {
+        const link = event.target.innerText.toLocaleLowerCase();
+        props.history.push(`/${link}`);
+    }
+
+    const getIcon = (text) => {
+        switch (text) {
+            case 'Home':
+                return <HomeIcon />;
+                break;
+            case 'Expenses':
+                return <CashIcon />;
+                break;
+            case 'Categories':
+                return <CategoryIcon />;
+                break;
+            case 'Dashboard':
+                return <DashboardIcon />;
+                break;
+            case 'About':
+                return <AboutIcon />;
+                break;
+            default:
+                break;
+        }
+    }
+
+    const getNavList = () => {
         return (
             <List>
-                <ListItem button>
-                    <ListItemIcon><HomeIcon /></ListItemIcon>
-                    <Link to="/" className={classes.link}>
-                        <ListItemText primary={'Home'} />
-                    </Link>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon><CashIcon /></ListItemIcon>
-                    <Link to="/expenses" className={classes.link}>
-                        <ListItemText primary={'Expenses'} />
-                    </Link>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon><CategoryIcon /></ListItemIcon>
-                    <Link to="/categories" className={classes.link}>
-                        <ListItemText primary={'Categories'} />
-                    </Link>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon><DashboardIcon /></ListItemIcon>
-                    <Link to="/dashboard" className={classes.link}>
-                        <ListItemText primary={'Dashboard'} />
-                    </Link>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon><AboutIcon /></ListItemIcon>
-                    <Link to="/about" className={classes.link}>
-                        <ListItemText primary={'About'} />
-                    </Link>
-                </ListItem>
+                {['Home', 'Expenses', 'Categories', 'Dashboard', 'About'].map((text, index) => {
+                    return (
+                        <ListItem button onClick={handleNavClick} key={index}>
+                            <ListItemIcon>{getIcon(text)}</ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    )
+                })}
             </List>
         )
     }
@@ -77,10 +78,9 @@ export default function Navigation(props) {
                 </IconButton>
             </div>
             <Divider />
-            <List>
-                {getNavList()}
-            </List>
+            {getNavList()}
         </Drawer>
     )
 }
 
+export default withRouter(Navigation);

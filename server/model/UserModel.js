@@ -16,9 +16,10 @@ const UserSchema = new Schema({
         type: String,
         default: 'user',
     },
+    budgets: [{ type: Schema.Types.ObjectId, ref: 'BudgetModel' }],
     groups: [{ type: Schema.Types.ObjectId, ref: 'GroupModel' }],
-    expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense' }],
-    categories: [{ type: Schema.Types.ObjectId, ref: 'Category' }]
+    expenses: [{ type: Schema.Types.ObjectId, ref: 'ExpenseModel' }],
+    categories: [{ type: Schema.Types.ObjectId, ref: 'CategoryModel' }]
 });
 
 UserSchema.pre('save', async function (next) {
