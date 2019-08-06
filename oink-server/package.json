@@ -1,0 +1,20 @@
+{
+  "name": "oink-server",
+  "version": "1.0.0",
+  "description": "Server for Oink",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bozhidar Karaargirov",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/express": "4.17.0",
+    "tslint": "5.18.0",
+    "typescript": "3.5.3"
+  },
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
