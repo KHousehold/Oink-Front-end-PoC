@@ -1,22 +1,26 @@
-import uuid from 'uuid/v4';
-import numbro from 'numbro';
+import numbro from "numbro";
+import uuid from "uuid/v4";
 
 export default class Expense {
-    readonly id: String;
-    readonly name: String;
-    readonly category: String;
-    readonly amount: number;
-    readonly subExpenses?: Expense[];
+    public readonly id: string;
+    public readonly name: string;
+    public readonly category: string;
+    public readonly amount: number;
+    public readonly createdOn: number;
+    public readonly subExpenses?: Expense[];
 
-    constructor(id: String, name: String, category: String, amount: number, subExpenses?: Expense[]) {
+    constructor(
+        id: string, name: string, category: string,
+        amount: number, createdOn: number, subExpenses?: Expense[]) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.amount = amount;
+        this.createdOn = createdOn;
         this.subExpenses = subExpenses;
     }
 
-    add(other: Expense): Expense {
+    public add(other: Expense): Expense {
         const id = uuid();
 
         return new Expense(
@@ -24,7 +28,8 @@ export default class Expense {
             id,
             this.category === other.category ? this.category : "Total",
             numbro(this.amount).add(other.amount).value(),
-            [this, other]
-        )
+            Date.now(),
+            [this, other],
+        );
     }
 }
