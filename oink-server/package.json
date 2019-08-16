@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "test": "mocha --require ts-node/register test/**/*.ts"
+    "test": "mocha --require ts-node/register test/**/*.ts",
+    "integrationTest": "mocha --require ts-node/register integrationTest/**/*.ts"
   },
   "author": "Bozhidar Karaargirov",
   "license": "Apache-2.0",
