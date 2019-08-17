@@ -4,7 +4,7 @@
   "description": "Server for Oink",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/src/app.js",
     "test": "mocha --require ts-node/register test/**/*.ts",
     "integrationTest": "mocha --require ts-node/register integrationTest/**/*.ts"
   },
