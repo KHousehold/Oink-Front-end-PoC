@@ -3,11 +3,11 @@ import mongoose, { Mongoose } from "mongoose";
 import ExpenseRepository from "./expenses/repositories/expenseRepository";
 import ExpenseMapper from "./expenses/repositories/expenseMapper";
 import ExpenseService from "./expenses/expensesService";
+import config from "./config/app-config.json";
 
 const app = express();
 const port = 3000;
-const connectionString = "mongodb://localhost:27017/test";
-mongoose.connect(connectionString);
+mongoose.connect(config.mongo.connectionString, { useNewUrlParser: true });
 const expenseService = initExpense(mongoose);
 
 app.get("/", (req, res) => {
