@@ -1,17 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatListModule, MatGridListModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatTableModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ExpensesList } from './expenses/list/expense-list.component';
+import { ExpensesListComponent } from './expenses/list/expense-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ExpensesList
+    ExpensesListComponent
   ],
   imports: [
     BrowserModule,
@@ -20,8 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule,
-    MatGridListModule
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
