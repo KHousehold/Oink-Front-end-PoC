@@ -1,5 +1,8 @@
 {
     "mongo": {
         "connectionString": "mongodb://localhost:27017/test"
+    },
+    "app": {
+        "port": 3000
     }
 }

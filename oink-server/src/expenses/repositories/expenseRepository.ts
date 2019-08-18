@@ -1,16 +1,19 @@
 import { Mongoose, Model } from "mongoose";
+import { injectable } from "inversify";
 import Expense from "../models/expense";
 import { ExpenseSchema, IExpense } from "./expenseSchema";
 import ExpenseMapper from "./expenseMapper";
+import DbContext from "../../infrastructure/dbContext";
 
+@injectable()
 export default class ExpenseRepository {
     private readonly expenseModel: Model<IExpense>;
-    private readonly expenseMapper: ExpenseMapper;
 
-    constructor(mongoose: Mongoose, expenseMapper: ExpenseMapper) {
+    constructor(
+        private readonly mongoose: Mongoose,
+        private readonly expenseMapper: ExpenseMapper) {
         const collectionName = "expense";
         this.expenseModel = mongoose.model(collectionName, ExpenseSchema);
-        this.expenseMapper = expenseMapper;
     }
 
     public async addNewExpense(expense: Expense): Promise<boolean> {

@@ -1,12 +1,10 @@
-import ExpenseRepository from "./repositories/expenseRepository";
-import Expense from "./models/expense";
+import { injectable } from "inversify";
+import ExpenseRepository from "../repositories/expenseRepository";
+import Expense from "../models/expense";
 
+@injectable()
 export default class ExpenseService {
-    private readonly expenseRepository: ExpenseRepository;
-
-    constructor(expenseRepository: ExpenseRepository) {
-        this.expenseRepository = expenseRepository;
-    }
+    constructor(private readonly expenseRepository: ExpenseRepository) { }
 
     public async addExpense(expense: Expense): Promise<boolean> {
         return await this.expenseRepository.addNewExpense(expense);

@@ -1,6 +1,8 @@
+import { injectable } from "inversify";
 import { IExpense } from "./expenseSchema";
 import Expense from "../models/expense";
 
+@injectable()
 export default class ExpenseModelMapper {
     public toModel(entity: IExpense): Expense {
         return new Expense(

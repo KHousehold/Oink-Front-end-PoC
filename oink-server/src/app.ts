@@ -1,36 +1,54 @@
 import express from "express";
-import mongoose, { Mongoose } from "mongoose";
+import { Container } from "inversify";
+import "reflect-metadata";
+import { InversifyExpressServer } from "inversify-express-utils";
+import bodyParser = require("body-parser");
+import mongoose, { Mongoose, mongo } from "mongoose";
 import ExpenseRepository from "./expenses/repositories/expenseRepository";
 import ExpenseMapper from "./expenses/repositories/expenseMapper";
-import ExpenseService from "./expenses/expensesService";
+import ExpenseService from "./expenses/services/expensesService";
+import "./expenses/expenseController";
+import { TYPES } from "./infrastructure/ioc/types";
+import DbContext from "./infrastructure/dbContext";
 import config from "./config/app-config.json";
 
-const app = express();
-const port = 3000;
-mongoose.connect(config.mongo.connectionString, { useNewUrlParser: true });
-const expenseService = initExpense(mongoose);
+async function runApp() {
+    const inversifyContainer = new Container();
+    const app = await bootstrap(inversifyContainer);
+    return app;
+}
 
-app.get("/", (req, res) => {
-    res.send("PingPong");
-});
+(async () => {
+    await runApp();
+})();
 
-app.get("/expense", async (req, res) => {
-    const result = await expenseService.getExpenses();
-    res.send({ result });
-});
+async function bootstrap(
+    container: Container,
+) {
+    const dbContext = new DbContext(config.mongo.connectionString);
+    const connection = await dbContext.getConnection();
+    container.bind<Mongoose>(Mongoose).toConstantValue(connection);
+    container.bind<ExpenseMapper>(ExpenseMapper).to(ExpenseMapper);
+    container.bind<ExpenseRepository>(ExpenseRepository).to(ExpenseRepository);
+    container.bind<ExpenseService>(ExpenseService).to(ExpenseService);
 
-app.post("/expense", async (req, res) => {
-    const result = await expenseService.addExpense(req.body);
-    res.send(result);
-});
+    const server = new InversifyExpressServer(container);
+    server.setConfig((a) => {
+        // add body parser
+        a.use(bodyParser.urlencoded({
+            extended: true,
+        }));
+        a.use(bodyParser.json());
+    });
 
-app.listen(port, err => {
-    if (err) {
-        return console.error(err);
-    }
-    return console.log(`server is listening on ${port}`);
-});
+    const app = server.build();
 
-function initExpense(mongo: Mongoose) {
-    return new ExpenseService(new ExpenseRepository(mongo, new ExpenseMapper()));
+    app.listen(config.app.port, (err) => {
+        if (err) {
+            return console.error(err);
+        }
+        return console.log(`server is listening on ${config.app.port}`);
+    });
+
+    return app;
 }
