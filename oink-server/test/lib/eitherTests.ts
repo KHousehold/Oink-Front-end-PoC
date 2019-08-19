@@ -32,4 +32,17 @@ describe("Either", () => {
         morph.isRight.should.be.true;
         morph.toRight().value.should.be.equal(2);
     });
+
+    //TODO: test left
+
+    it("flatMap should affect right", () => {
+        const target = new Right(1);
+
+        const morph  = target.flatMap((n) => new Right(n + 1));
+
+        morph.isRight.should.be.true;
+        morph.toRight().value.should.be.equal(2);
+    });
+
+    //TODO: test left
 });
