@@ -1,14 +1,12 @@
-import express from "express";
 import { Container } from "inversify";
 import "reflect-metadata";
 import { InversifyExpressServer } from "inversify-express-utils";
 import bodyParser = require("body-parser");
-import mongoose, { Mongoose, mongo } from "mongoose";
+import { Mongoose } from "mongoose";
 import ExpenseRepository from "./expenses/repositories/expenseRepository";
 import ExpenseMapper from "./expenses/repositories/expenseMapper";
 import ExpenseService from "./expenses/services/expensesService";
-import "./expenses/expenseController";
-import { TYPES } from "./infrastructure/ioc/types";
+import "./expenses/controllers/expenseController";
 import DbContext from "./infrastructure/dbContext";
 import config from "./config/app-config.json";
 

@@ -6,6 +6,7 @@ import ExpenseRepository from "../../src/expenses/repositories/expenseRepository
 import ExpenseMapper from "../../src/expenses/repositories/expenseMapper";
 import mongoose from "mongoose";
 import { AssertionError } from "assert";
+import { right } from "fp-ts/lib/Either";
 
 chai.should();
 
@@ -20,7 +21,6 @@ describe("Expense repository integration tests", () => {
 
             const result = await expenseRepository.addNewExpense(expense);
 
-            result.should.equal(true);
             mongoose.disconnect();
         });
     });

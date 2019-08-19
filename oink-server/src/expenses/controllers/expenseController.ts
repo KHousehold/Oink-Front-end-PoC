@@ -1,8 +1,10 @@
 import { interfaces, controller, httpGet, httpPost, request, response } from "inversify-express-utils";
 import { inject } from "inversify";
 import express from "express";
-import ExpenseService from "./services/expensesService";
-import Expense from "./models/expense";
+import ExpenseService from "../services/expensesService";
+import Expense from "../models/expense";
+import { Either, either } from "fp-ts/lib/Either";
+import BaseError from "../../infrastructure/errors/error";
 
 @controller("/expense")
 export class ExpenseController implements interfaces.Controller {
@@ -12,6 +14,10 @@ export class ExpenseController implements interfaces.Controller {
     @httpGet("/")
     public async getExpenses(request: express.Request, response: express.Response) {
         const result = await this.expenseService.getExpenses();
+
+        result.map((expenses) => ({ expenses }))
+        either
+            .map(result, (expenses) => ({ expenses }));
         return { result };
     }
 
