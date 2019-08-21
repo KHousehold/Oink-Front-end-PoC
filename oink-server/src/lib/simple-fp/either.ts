@@ -28,7 +28,7 @@ export class Either<E, S> {
      * Map the function if it is Right, if it is left it stayis the same
      * @param f 
      */
-    public flatMap<Next>(f: (arg0: S) => Either<E, Next>): Either<E, Next> {
+    public flatMap<S1>(f: (arg0: S) => Either<E, S1>): Either<E, S1> {
         if (this.isLeft) {
             return this.toLeft();
         }

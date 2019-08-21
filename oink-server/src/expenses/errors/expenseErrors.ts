@@ -1,4 +1,4 @@
-import BaseError from "../../infrastructure/errors/error";
+import BaseError from "../../common/errors/error";
 
 export const ERROR_CONSTANTS = {
     GENERIC_DB_ERROR: "EXP_DB_001",

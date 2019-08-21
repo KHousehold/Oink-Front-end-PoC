@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
 import ExpenseRepository from "../repositories/expenseRepository";
 import Expense from "../models/expense";
-import BaseError from "../../infrastructure/errors/error";
+import BaseError from "../../common/errors/error";
 import { Either } from "../../lib/simple-fp/either";
 
 @injectable()

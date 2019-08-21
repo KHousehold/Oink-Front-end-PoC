@@ -5,7 +5,7 @@ import Expense from "../models/expense";
 import ExpenseMapper from "./expenseMapper";
 import DbContext from "../../infrastructure/dbContext";
 import { ExpenseBaseError, ERROR_CONSTANTS } from "../errors/expenseErrors";
-import BaseError from "../../infrastructure/errors/error";
+import BaseError from "../../common/errors/error";
 import { Left, Right, Either } from "../../lib/simple-fp/either";
 
 @injectable()
