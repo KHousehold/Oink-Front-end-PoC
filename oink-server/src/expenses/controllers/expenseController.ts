@@ -3,7 +3,6 @@ import { inject } from "inversify";
 import express from "express";
 import ExpenseService from "../services/expensesService";
 import Expense from "../models/expense";
-import { Either, either } from "fp-ts/lib/Either";
 import BaseError from "../../infrastructure/errors/error";
 
 @controller("/expense")
@@ -15,9 +14,7 @@ export class ExpenseController implements interfaces.Controller {
     public async getExpenses(request: express.Request, response: express.Response) {
         const result = await this.expenseService.getExpenses();
 
-        result.map((expenses) => ({ expenses }))
-        either
-            .map(result, (expenses) => ({ expenses }));
+        result
         return { result };
     }
 

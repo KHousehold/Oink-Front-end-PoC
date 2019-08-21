@@ -4,7 +4,16 @@ export class Either<E, S> {
         public readonly isRight: boolean) { }
 
     /**
-     * Bind the given function across 'Right'
+     * Applies fl if it is left, fr if it is right
+     * @param fl the function to apply if this is a `Left`
+     * @param fr the function to apply if this is a `Right`
+     */
+    public fold<Next>(fl: (arg0: E) => Next, fr: (arg0: S) => Next): Next {
+        return this.isLeft ? fl(this.toLeft().error) : fr(this.toRight().value);
+    }
+
+    /**
+     * Bind the given function across `Right`
      * @param f 
      */
     public map<Next>(f: (arg0: S) => Next): Either<E, Next> {

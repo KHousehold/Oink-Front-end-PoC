@@ -1,8 +1,8 @@
 import { injectable } from "inversify";
 import ExpenseRepository from "../repositories/expenseRepository";
 import Expense from "../models/expense";
-import { Either } from "fp-ts/lib/Either";
 import BaseError from "../../infrastructure/errors/error";
+import { Either } from "../../lib/simple-fp/either";
 
 @injectable()
 export default class ExpenseService {

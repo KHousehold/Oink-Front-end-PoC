@@ -33,7 +33,17 @@ describe("Either", () => {
         morph.toRight().value.should.be.equal(2);
     });
 
-    //TODO: test left
+    it("map should ignore when left", () => {
+        const target = new Left(1);
+
+        const morph  = target.map((n) => {
+            // If working properly this should be ignored, and no exception will be thrown
+            true.should.be.false; 
+            return n + 1;
+        });
+
+        morph.toLeft().error.should.be.equal(1);
+    });
 
     it("flatMap should affect right", () => {
         const target = new Right(1);
@@ -44,5 +54,36 @@ describe("Either", () => {
         morph.toRight().value.should.be.equal(2);
     });
 
-    //TODO: test left
+    it("flatMap should ignore when left", () => {
+        const target = new Left(1);
+
+        const morph  = target.flatMap((n) => new Right(n + 1));
+
+        morph.isRight.should.be.false;
+       });
+
+    it("fold should work with left", () => {
+        const target: Either<number,number> = new Left(1);
+        const expectedResult = 5;
+
+        const result = target.fold(
+            (x) => x + 4,
+            (x) => x + 55,
+        );
+
+        result.should.equal(expectedResult);
+    });
+
+    it("fold should work with right", () => {
+        const target: Either<number, number> = new Right(1);
+
+        const expectedResult = 10;
+
+        const result = target.fold(
+            (x) => x + 4,
+            (x) => x + 9,
+        );
+
+        result.should.equal(expectedResult);
+    })
 });
