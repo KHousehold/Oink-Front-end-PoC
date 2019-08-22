@@ -7,6 +7,7 @@ import DbContext from "../../infrastructure/dbContext";
 import { ExpenseBaseError, ERROR_CONSTANTS } from "../errors/expenseErrors";
 import BaseError from "../../common/errors/error";
 import { Left, Right, Either } from "../../lib/simple-fp/either";
+import { GetExpensesRequest } from "../contracts/getExpensesRequest";
 
 @injectable()
 export default class ExpenseRepository {
@@ -29,12 +30,19 @@ export default class ExpenseRepository {
         }
     }
 
-    public async getExpenses(): Promise<Either<BaseError, Expense[]>> {
+    public async getExpenses(request: GetExpensesRequest): Promise<Either<BaseError, Expense[]>> {
         try {
-            const result: IExpense[] = await this.expenseModel.find({});
+            const options = {
+                skip: request.paging.getItemsToSkip(),
+                limit: request.paging.pageSize,
+            };
+            console.log(options);
+
+            const result: IExpense[] = await this.expenseModel.find({}, {}, options);
             return new Right(this.expenseMapper.toModels(result));
         } catch (e) {
             // TODO: log error
+            console.log(e);
             return new Left(new ExpenseBaseError(ERROR_CONSTANTS.GENERIC_DB_ERROR, e.msg));
         }
     }

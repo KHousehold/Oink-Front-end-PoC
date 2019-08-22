@@ -7,6 +7,8 @@ import ExpenseMapper from "../../src/expenses/repositories/expenseMapper";
 import mongoose from "mongoose";
 import { AssertionError } from "assert";
 import { right } from "fp-ts/lib/Either";
+import { GetExpensesRequest } from "../../src/expenses/contracts/getExpensesRequest";
+import PaginatedRequest from "../../src/common/contracts/paginatedRequests";
 
 chai.should();
 
@@ -28,7 +30,7 @@ describe("Expense repository integration tests", () => {
     describe("getting via repository", () => {
         it("should be able to retrive all expenses without parameters", async () => {
             mongoose.connect("mongodb://localhost:27017/test", { useNewUrlParser: true });
-            const result = await expenseRepository.getExpenses();
+            const result = await expenseRepository.getExpenses(new GetExpensesRequest(new PaginatedRequest(1, 20)));
 
             assert.isNotEmpty(result);
             mongoose.disconnect();

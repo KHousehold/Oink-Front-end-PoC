@@ -5,6 +5,7 @@ import ExpenseService from "../services/expensesService";
 import Expense from "../models/expense";
 import BaseError from "../../common/errors/error";
 import { GetExpensesRequest } from "../contracts/getExpensesRequest";
+import PaginatedRequest from "../../common/contracts/paginatedRequests";
 
 @controller("/expense")
 export class ExpenseController implements interfaces.Controller {
@@ -13,14 +14,19 @@ export class ExpenseController implements interfaces.Controller {
 
     @httpGet("/")
     public async getExpenses(
-        @queryParam("filter") request: GetExpensesRequest, 
+        @request() req: express.Request, 
         @response() response: express.Response) {
-        const result = await this.expenseService.getExpenses();
         try {
-            result.fold(
-                (error) => response.status(400).send(error),
-                (success) => response.status(200).send({ result: success}),
-            );
+        const request = new GetExpensesRequest(
+            new PaginatedRequest(req.body.paging.pageNumber, req.body.paging.pageSize),
+        );
+
+        const result = await this.expenseService.getExpenses(request);
+
+        result.fold(
+            (error) => response.status(400).send(error),
+            (success) => response.status(200).send({ result: success}),
+        );
         } catch (err) {
             response.status(400).send({ error: err.message });
         }
