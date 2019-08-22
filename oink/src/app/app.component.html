@@ -1,6 +1,8 @@
 <div class="container">
     <oink-header></oink-header>
-    <div class="expenses-container" id="expenses-list-container">
-        <app-expenses-list></app-expenses-list>
-    </div>
+    <mat-grid-list cols="2" rowHeight="100%" gutterSize="3px">
+        <mat-grid-tile colspan="1" rowspan="1">
+            <app-expenses-list></app-expenses-list>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>

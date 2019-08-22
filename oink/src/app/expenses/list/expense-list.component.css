@@ -4,3 +4,22 @@
 app-expenses-list{
     width: 100%;
 }
+.mat-column-select {
+    overflow: initial;
+}
+.expenses-container{
+    overflow:auto;
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    width: 98%;
+    margin-left:5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.mat-paginator{
+    display: block;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}

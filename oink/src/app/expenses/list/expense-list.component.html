@@ -1,29 +1,34 @@
-<!-- <mat-selection-list role="listbox" rowHeight="100%">
-    <mat-list-option role="option" *ngFor="let expense of expenses">
-        <a style="cursor: pointer">
-            <p>{{expense.name}} {{expense.createdOn | date:'d.M.yyyy'}} {{expense.amount}}</p>
-        </a>
-    </mat-list-option>
-</mat-selection-list> -->
+<div class="mat-elevation-z2 expenses-container">
+    <table mat-table [dataSource]="expenses">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let expense">{{expense.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let expense">{{expense.createdOn | date:'d.M.yyyy'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let expense">{{expense.amount | currency}}</td>
+        </ng-container>
 
-<table mat-table [dataSource]="expenses" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let expense">{{expense.name}}</td>
-        <td mat-footer-cell *matFooterCellDef> Total </td>
-    </ng-container>
-    <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let expense">{{expense.createdOn | date:'d.M.yyyy'}}</td>
-        <td mat-footer-cel *matFooterCellDef></td>
-    </ng-container>
-    <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Amount </th>
-        <td mat-cell *matCellDef="let expense">{{expense.amount | currency}}</td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
-    </ng-container>
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-</table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [length]="1" showFirstLastButtons></mat-paginator>
+</div>
