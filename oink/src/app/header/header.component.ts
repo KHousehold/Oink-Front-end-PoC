@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'oink-header',
+    selector: 'app-oink-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
