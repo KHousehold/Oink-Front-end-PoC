@@ -7,14 +7,13 @@ import Expense from '../expense.model';
 @Component({
     selector: 'app-expenses-list',
     templateUrl: 'expense-list.component.html',
-    styleUrls: ['./expense-list.component.css'],
+    styleUrls: ['./expense-list.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 
 export class ExpensesListComponent {
     expenses: Expense[] = [
-        new Expense('First expense', 10, new Date()),
-        new Expense('First expense', 10, new Date()),
+        new Expense('First expense', 10, new Date())
     ];
     displayedColumns: string[] = ['name', 'date', 'amount', 'select'];
     selection = new SelectionModel<Expense>(true, []);
@@ -23,6 +22,7 @@ export class ExpensesListComponent {
     }
 
     getTotalCost() {
+        debugger;
         return this.expenses.map(e => e.amount).reduce((acc, value) => acc + value, 0);
     }
 

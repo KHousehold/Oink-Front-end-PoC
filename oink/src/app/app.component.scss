@@ -1,0 +1,12 @@
+@import "../variables.scss";
+
+.expenses-container{
+    overflow:auto;
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    width: 100%;
+    background-color: $accent;
+    margin: 0px;
+};
+

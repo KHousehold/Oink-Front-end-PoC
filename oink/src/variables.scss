@@ -1,0 +1,76 @@
+@import "../node_modules/@angular/material/theming";
+
+$oink-primary: (
+    50 : #e1edee,
+    100 : #b4d1d4,
+    200 : #82b2b8,
+    300 : #50939c,
+    400 : #2b7c86,
+    500 : #056571,
+    600 : #045d69,
+    700 : #04535e,
+    800 : #034954,
+    900 : #013742,
+    A100 : #77e4ff,
+    A200 : #44daff,
+    A400 : #11cfff,
+    A700 : #00c5f6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$oink-accent:(
+    50 : #ffedeb,
+    100 : #ffd2ce,
+    200 : #ffb5ae,
+    300 : #ff978d,
+    400 : #ff8074,
+    500 : #ff6a5c,
+    600 : #ff6254,
+    700 : #ff574a,
+    800 : #ff4d41,
+    900 : #ff3c30,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffdddb,
+    A700 : #ffc5c2,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$theme-primary: mat-palette($oink-primary);
+$theme-accent: mat-palette($oink-accent);
+$theme-warn: mat-palette($mat-red);
+
+$primary: mat-color($theme-primary);
+$primary-light: mat-color($theme-primary, 400);
+$accent: mat-color($theme-accent);
+$warn: mat-color($theme-warn);

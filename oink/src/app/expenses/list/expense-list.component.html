@@ -1,4 +1,4 @@
-<div class="mat-elevation-z2 expenses-container">
+<div class="mat-elevation-z3" class="table-container">
     <table mat-table [dataSource]="expenses">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -27,7 +27,7 @@
             </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row color="primary" *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
     </table>
     <mat-paginator [pageSize]="10" [length]="1" showFirstLastButtons></mat-paginator>
