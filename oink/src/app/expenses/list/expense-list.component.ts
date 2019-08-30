@@ -22,7 +22,6 @@ export class ExpensesListComponent {
     }
 
     getTotalCost() {
-        debugger;
         return this.expenses.map(e => e.amount).reduce((acc, value) => acc + value, 0);
     }
 
