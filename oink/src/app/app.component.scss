@@ -17,3 +17,14 @@ app-expense-form{
     height: 90%;
     background:white;
 }
+app-expenses-list{
+    width: 97%;
+    position: absolute;
+    top: 0px;
+    margin-top: 5px;
+    height: 90%;
+    overflow: auto;
+}
+mat-grid-tile{
+    min-width: 250px;
+}

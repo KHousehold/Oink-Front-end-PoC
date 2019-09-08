@@ -3,3 +3,24 @@
 .form-container{
     height: 100%;
 }
+.form-header{
+    color: white;
+    background-color: $primary-light;
+    height: 56px;
+}
+form{
+    height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+mat-form-field{
+    padding-top: 10px;
+    width: 100%;
+}
+.button-container{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}

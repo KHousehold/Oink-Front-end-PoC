@@ -74,9 +74,9 @@ $oink-accent:(
     )
 );
 
-$theme-primary: mat-palette($oink-primary);
-$theme-accent: mat-palette($oink-accent);
-$theme-warn: mat-palette($mat-red);
+$theme-primary: mat-palette($oink-primary, 500, 400, 900);
+$theme-accent: mat-palette($oink-accent, 500, 400, 900);
+$theme-warn: mat-palette($mat-red, 500);
 
 $oink-theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 
