@@ -21,4 +21,9 @@ export class ExpenseFormComponent {
         const newExpense = new Expense(expenseName, expenseAmount, expenseCreatedOn);
         this.expensesService.addNewExpense(newExpense);
     }
+
+    onClearFields() {
+        this.nameInputRef.nativeElement.value = '';
+        this.amountInputRef.nativeElement.value = '';
+    }
 }
