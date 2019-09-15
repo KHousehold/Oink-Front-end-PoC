@@ -5,7 +5,7 @@
             <app-expenses-list></app-expenses-list>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
-            <app-expense-form></app-expense-form>
+            <app-expense-form (expenseAdded)="onExpenseAdded($event)"></app-expense-form>
         </mat-grid-tile>
     </mat-grid-list>
 </div>

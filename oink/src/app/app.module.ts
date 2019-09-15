@@ -1,5 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, MatTableModule, MatCheckboxModule, MatFormFieldModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatTableModule,
+  MatCheckboxModule,
+  MatFormFieldModule
+} from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material';
@@ -11,7 +19,7 @@ import { ExpensesListComponent } from './expenses/list/expense-list.component';
 import { ExpenseFormComponent } from './expenses/edit/expense-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-
+import {ExpensesService} from './expenses.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +43,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ExpensesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

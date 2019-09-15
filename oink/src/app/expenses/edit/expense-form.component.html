@@ -2,14 +2,14 @@
 <form>
     <mat-form-field color="accent">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Expense name">
+        <input matInput placeholder="Expense name" #nameInput>
     </mat-form-field>
     <mat-form-field color="accent">
         <mat-label>Amount</mat-label>
-        <input matInput type="number" min="0" placeholder="Amount">
+        <input matInput type="number" min="0" placeholder="Amount" #amountInput>
     </mat-form-field>
 </form>
 <div class="button-container">
-    <button mat-raised-button color="primary">Add Expense</button>
-    <button mat-raised-button color="accent">Clear fields</button>
+    <button mat-raised-button color="primary" (click)="onAddExpense()">Add Expense</button>
+    <button mat-raised-button color="accent" (click)="onClearFields()">Clear fields</button>
 </div>

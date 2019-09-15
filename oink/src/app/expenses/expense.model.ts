@@ -3,14 +3,14 @@ export default class Expense {
     public name: string;
     // public category: string;
     public amount: number;
-    public createdOn: Date;
+    public createdOn: number;
     // public subExpenses?: Expense[];
 
     constructor(
         name: string,
         // category: string,
         amount: number,
-        createdOn: Date
+        createdOn: number
         //  subExpenses?: Expense[])
     ) {
         this.name = name;

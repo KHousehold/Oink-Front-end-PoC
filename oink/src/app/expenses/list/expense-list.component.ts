@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input, SimpleChange, SimpleChanges, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
+import {ExpensesService} from '../../expenses.service';
 import Expense from '../expense.model';
 // import './expense-list.component.css';
 
@@ -11,14 +12,21 @@ import Expense from '../expense.model';
     encapsulation: ViewEncapsulation.None,
 })
 
-export class ExpensesListComponent {
-    expenses: Expense[] = [
-        new Expense('First expense', 10, new Date())
-    ];
+export class ExpensesListComponent implements OnInit {
+    expenses: Expense[] = [];
     displayedColumns: string[] = ['name', 'date', 'amount', 'select'];
     selection = new SelectionModel<Expense>(true, []);
 
-    constructor() {
+    constructor(private expensesService: ExpensesService) {
+        this.expensesService.expensesUpdated.subscribe((newExpense) => this.onExpensesUpdated(newExpense));
+    }
+
+    ngOnInit() {
+        this.expenses = this.expensesService.expenses;
+    }
+
+    onExpensesUpdated(newExpense: Expense) {
+        this.expenses = [...this.expenses];
     }
 
     getTotalCost() {

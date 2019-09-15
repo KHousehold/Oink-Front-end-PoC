@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import {ExpensesService} from '../../expenses.service';
+import Expense from '../expense.model';
 
 @Component({
     selector: 'app-expense-form',
@@ -8,11 +9,16 @@ import { Component } from '@angular/core';
 })
 
 export class ExpenseFormComponent {
-    // options: FormGroup;
+    @ViewChild('nameInput', {static: false}) nameInputRef: ElementRef;
+    @ViewChild('amountInput', {static: false}) amountInputRef: ElementRef;
 
-    constructor() {
-        // this.options = fb.group({
-        //     floatLable: 'auto'
-        // });
+    constructor(private expensesService: ExpensesService) {}
+
+    onAddExpense() {
+        const expenseName = this.nameInputRef.nativeElement.value;
+        const expenseAmount = this.amountInputRef.nativeElement.value;
+        const expenseCreatedOn = Date.now();
+        const newExpense = new Expense(expenseName, expenseAmount, expenseCreatedOn);
+        this.expensesService.addNewExpense(newExpense);
     }
 }
